@@ -1,21 +1,22 @@
 DarkRP.declareChatCommand{
     command = "give",
-    description = "Give money to the player you're looking at.",
+    description = "Give time to the player you're looking at.",
     delay = 1.5
 }
 
 DarkRP.declareChatCommand{
-    command = "dropmoney",
-    description = "Drop money on the floor.",
+    command = "drop",
+    description = "Drop time on the floor.",
     delay = 1.5
 }
-
+--[[
 DarkRP.declareChatCommand{
     command = "moneydrop",
     description = "Drop money on the floor.",
     delay = 1.5
 }
-
+--]]
+--[[
 DarkRP.declareChatCommand{
     command = "cheque",
     description = "Write a cheque for a specific person.",
@@ -29,7 +30,7 @@ DarkRP.declareChatCommand{
     delay = 1.5,
     tableArgs = true
 }
-
+]]--
 DarkRP.declareChatCommand{
     command = "setmoney",
     description = "Set a player's wallet value.",

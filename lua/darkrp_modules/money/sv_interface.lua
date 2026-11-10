@@ -1,10 +1,10 @@
 DarkRP.PLAYER.addMoney = DarkRP.stub{
     name = "addMoney",
-    description = "Give money to a player.",
+    description = "Give time to a player.",
     parameters = {
         {
             name = "amount",
-            description = "The amount of money to give to the player. A negative amount means you're substracting money.",
+            description = "The amount of time to give to the player. A negative amount means you're substracting time.",
             type = "number",
             optional = false
         }
@@ -27,23 +27,23 @@ DarkRP.PLAYER.payDay = DarkRP.stub{
 
 DarkRP.payPlayer = DarkRP.stub{
     name = "payPlayer",
-    description = "Make one player give money to the other player.",
+    description = "Make one player give time to the other player.",
     parameters = {
         {
             name = "sender",
-            description = "The player who gives the money.",
+            description = "The player who gives the time.",
             type = "Player",
             optional = false
         },
         {
             name = "receiver",
-            description = "The player who receives the money.",
+            description = "The player who receives the time.",
             type = "Player",
             optional = false
         },
         {
             name = "amount",
-            description = "The amount of money.",
+            description = "The amount of time.",
             type = "number",
             optional = false
         }
@@ -55,17 +55,17 @@ DarkRP.payPlayer = DarkRP.stub{
 
 DarkRP.createMoneyBag = DarkRP.stub{
     name = "createMoneyBag",
-    description = "Create a money bag.",
+    description = "Create a time container.",
     parameters = {
         {
             name = "pos",
-            description = "The The position where the money bag is to be spawned.",
+            description = "The position where the time container is to be spawned.",
             type = "Vector",
             optional = false
         },
         {
             name = "amount",
-            description = "The amount of money.",
+            description = "The amount of time.",
             type = "number",
             optional = false
         }
@@ -73,7 +73,7 @@ DarkRP.createMoneyBag = DarkRP.stub{
     returns = {
         {
             name = "moneybag",
-            description = "The money bag entity.",
+            description = "The time container entity.",
             type = "Entity"
         }
     },

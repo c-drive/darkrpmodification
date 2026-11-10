@@ -1,10 +1,10 @@
 DarkRP.PLAYER.canAfford = DarkRP.stub{
     name = "canAfford",
-    description = "Whether the player can afford the given amount of money",
+    description = "Whether the player can afford the given amount of time",
     parameters = {
         {
             name = "amount",
-            description = "The amount of money",
+            description = "The amount of time",
             type = "number",
             optional = false
         }
@@ -21,14 +21,14 @@ DarkRP.PLAYER.canAfford = DarkRP.stub{
 
 DarkRP.ENTITY.isMoneyBag = DarkRP.stub{
     name = "isMoneyBag",
-    description = "Whether this entity is a money bag",
+    description = "Whether this entity is a time container",
     parameters = {
 
     },
     returns = {
         {
             name = "answer",
-            description = "Whether this entity is a money bag.",
+            description = "Whether this entity is a time container.",
             type = "boolean"
         }
     },
