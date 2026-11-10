@@ -27,7 +27,7 @@ local function attachCurrency(str)
     local config = GAMEMODE.Config
     return config.currencyLeft and config.currency .. str or str .. config.currency
 end
-
+--[[
 function DarkRP.formatMoney(n)
     if not n then return attachCurrency("0") end
 
@@ -53,6 +53,94 @@ function DarkRP.formatMoney(n)
 
     return (negative and "-" or "") .. attachCurrency(n)
 end
+]]-- 
+
+--[[ TIME MATHEMATICS
+0000:00:0:00:00:00
+YYYY:WW:D:HH:MM:SS
+Base currency stored in seconds
+
+YYYY = (seconds - (WW*604800)) / 31449600
+WW = (seconds - (D*86400)) / 604800
+D = (seconds - (HH*3600)) / 86400
+HH = (seconds - (MM*60)) / 3600
+MM = (seconds - (SS)) / 60
+SS = (seconds)
+
+60s = 1m
+60m = 1h
+24h = 1d
+7d = 1w
+52w = 1y
+]]-- 
+
+function DarkRP.formatMoney(n)
+    if not n then return attachCurrency("0") end
+
+    local config = GAMEMODE.Config
+    local negative = n < 0 -- DEATH
+
+    local total_seconds = n
+
+    local seconds = total_seconds % 60
+    local minutes = (total_seconds - seconds) / 60
+    local hours = (total_seconds - (minutes*60)) / 3600
+    local days = (total_seconds - (hours*3600)) / 86400
+    local weeks = (total_seconds - (days*86400)) / 604800
+    local years = (total_seconds - (days*604800)) / 31449600
+
+    --     -- Make sure the amount is padded with zeroes
+    -- seconds
+
+    if seconds < 10 then
+        seconds = "0" .. seconds
+    else
+        print("Seconds condition was false")
+    end
+
+    -- minutes
+
+    if minutes < 10 then
+        minutes = "0" .. minutes
+    else    
+        print("Minutes condition was false")
+    end
+
+    -- hours
+
+    if hours < 10 then
+        hours = "0" .. hours
+    else
+        print("Hours condition was false")
+    end
+
+    -- days
+
+    -- adding 0's to the day counter is not needed because it's a single digit
+
+    -- weeks
+
+    if weeks < 10 then
+        weeks = "0" .. weeks
+    else
+        print("Weeks condition was false")
+    end
+
+    -- years
+
+    if years < 1000 then
+        years = "0" .. years
+    elseif years < 100 then
+        years = "00" .. years
+    elseif years < 10 then
+        years = "000" .. years
+    else
+        print("Years condition was false")
+    end
+
+    return attachCurrency(n)
+end
+
 
 --[[---------------------------------------------------------------------------
 Find a player based on given information
