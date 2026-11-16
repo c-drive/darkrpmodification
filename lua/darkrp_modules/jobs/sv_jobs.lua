@@ -205,6 +205,33 @@ function meta:updateJob(job)
     end)
 end
 
+function meta:costTime()
+    local timerid = self:SteamID64() .. "costTimer"
+
+    if timer.Exists(timerid) then return end
+
+    timer.Create(timerid, 1, 0, function()
+        if not IsValid(self) then
+            timer.Remove(timerid)
+            return
+        end
+
+        if self:getDarkRPVar("money") <= 0 then
+            return
+        end
+
+        self:addMoney(-1)
+    end)
+end
+
+hook.Add("PlayerInitialSpawn", "StartCostTime", function(ply)
+    ply:costTime()
+end)
+
+hook.Add("PlayerDisconnected", "StopCostTime", function(ply)
+    timer.Remove(ply:SteamID64() .. "costTimer")
+end)
+
 function meta:teamUnBan(Team)
     self.bannedfrom = self.bannedfrom or {}
 

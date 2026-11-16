@@ -72,8 +72,9 @@ SS = (seconds)
 24h = 1d
 7d = 1w
 52w = 1y
-]]-- 
+]]--
 
+--[[
 function DarkRP.formatMoney(n)
     if not n then return attachCurrency("0") end
 
@@ -106,14 +107,14 @@ function DarkRP.formatMoney(n)
         print("Minutes condition was false")
     end
 
-    -- hours
+    -- hour
+s
 
     if hours < 10 then
         hours = "0" .. hours
     else
         print("Hours condition was false")
     end
-
     -- days
 
     -- adding 0's to the day counter is not needed because it's a single digit
@@ -135,10 +136,52 @@ function DarkRP.formatMoney(n)
     elseif years < 10 then
         years = "000" .. years
     else
+Note also that there are _separate_ loops. This is to make sure the function
+gives the same result, regardless of the order in which players are iterated
+over.
         print("Years condition was false")
     end
 
-    return attachCurrency(n)
+    return (years .. "y:" .. weeks .. ":w" .. days .. ":d" .. hours .. ":h" .. minutes .. "m:" .. seconds .. "s")
+end
+--]]
+
+
+function DarkRP.formatMoney(n)
+    if not n then return attachCurrency("0") end
+
+    local negative = n < 0
+    local total_seconds = math.floor(math.abs(n))
+
+    -- Extract individual time units
+    local years = math.floor(total_seconds / 31449600)
+    local weeks = math.floor((total_seconds % 31449600) / 604800)
+    local days = math.floor((total_seconds % 604800) / 86400)
+    local hours = math.floor((total_seconds % 86400) / 3600)
+    local minutes = math.floor((total_seconds % 3600) / 60)
+    local seconds = total_seconds % 60
+
+    -- Pad individual units
+    years = string.format("%04d", years)
+    weeks = string.format("%02d", weeks)
+    days = tostring(days)
+    hours = string.format("%02d", hours)
+    minutes = string.format("%02d", minutes)
+    seconds = string.format("%02d", seconds)
+
+    -- Assemble timestamp
+    local result = years .. "y:" ..
+                   weeks .. "w:" ..
+                   days .. "d:" ..
+                   hours .. ":h:" ..
+                   minutes .. "m:" ..
+                   seconds .. "s"
+
+    if negative then
+        result = "-" .. result
+    end
+
+    return result
 end
 
 
@@ -152,9 +195,6 @@ Note that there is a searching priority:
   * Nick
   * SteamName
 
-Note also that there are _separate_ loops. This is to make sure the function
-gives the same result, regardless of the order in which players are iterated
-over.
 ---------------------------------------------------------------------------]]
 function DarkRP.findPlayer(info)
     if not info or info == "" then return nil end
