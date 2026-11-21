@@ -16,7 +16,9 @@ https://darkrp.miraheze.org/wiki/DarkRP:CustomJobFields
 Add your custom jobs under the following line:
 ---------------------------------------------------------------------------]]
 
-TEAM_CITIZEN = DarkRP.createJob("Citizen", {
+
+
+TEAM_CITIZEN = DarkRP.createJob("Recruit", {
     color = Color(20, 150, 20, 255),
     model = {
         "models/player/Group01/Female_01.mdl",
@@ -34,16 +36,16 @@ TEAM_CITIZEN = DarkRP.createJob("Citizen", {
         "models/player/Group01/Male_08.mdl",
         "models/player/Group01/Male_09.mdl"
     },
-    description = [[The Citizen is the most basic level of society you can hold besides being a hobo. You have no specific role in city life.]],
+    description = [[New recruit]],
     weapons = {},
     command = "citizen",
     max = 0,
-    salary = GAMEMODE.Config.normalsalary,
+    salary = 0,
     admin = 0,
     vote = false,
     hasLicense = false,
     candemote = false,
-    category = "Citizens",
+    category = "Other",
 })
 
 TEAM_POLICE = DarkRP.createJob("Civil Protection", {
@@ -234,6 +236,7 @@ if not DarkRP.disabledDefaults["modules"]["hungermod"] then
     })
 end
 
+--[[ DISABLED: not needed for darkrpmodification file, included in default file
 -- Compatibility for when default teams are disabled
 TEAM_CITIZEN = TEAM_CITIZEN  or -1
 TEAM_POLICE  = TEAM_POLICE   or -1
@@ -245,6 +248,7 @@ TEAM_CHIEF   = TEAM_CHIEF    or -1
 TEAM_MAYOR   = TEAM_MAYOR    or -1
 TEAM_HOBO    = TEAM_HOBO     or -1
 TEAM_COOK    = TEAM_COOK     or -1
+]]
 
 -- Door groups
 AddDoorGroup("Cops and Mayor only", TEAM_CHIEF, TEAM_POLICE, TEAM_MAYOR)
@@ -330,4 +334,4 @@ GAMEMODE.CivilProtection = {
 --[[---------------------------------------------------------------------------
 Jobs that are hitmen (enables the hitman menu)
 ---------------------------------------------------------------------------]]
-DarkRP.addHitmanTeam(TEAM_MOB)
+-- DarkRP.addHitmanTeam(TEAM_MOB)
